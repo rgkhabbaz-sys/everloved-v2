@@ -13,8 +13,21 @@ export async function POST(req: Request) {
 
         if (!process.env.OPENAI_API_KEY) {
             // Mock response if no key is present
+            // Mock responses if no key is present
+            const mockResponses = [
+                "I'm here with you. Tell me more about how you're feeling.",
+                "That sounds interesting. Do you remember when that happened?",
+                "I am listening. You are safe here with me.",
+                "It's a beautiful day. Would you like to talk about your favorite memory?",
+                "I understand. Take your time, I'm not going anywhere.",
+                "You are doing great. I love hearing your voice.",
+                "Can you tell me about your childhood home?",
+                "I am your companion. I am here to support you."
+            ];
+            const randomResponse = mockResponses[Math.floor(Math.random() * mockResponses.length)];
+
             return NextResponse.json({
-                response: "I am here with you. I don't have my memory fully connected yet (missing API Key), but I am listening."
+                response: randomResponse
             });
         }
 

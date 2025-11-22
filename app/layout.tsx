@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/components/ui/Toast";
+import { Navigation } from "@/components/Navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "EverLoved - AI Companion",
-    description: "Therapeutic AI companion for dementia care.",
+    title: "EverLoved - AI Companion for Dementia Care",
+    description: "A therapeutic, voice-enabled companion for dementia patients and their caregivers.",
 };
 
 export default function RootLayout({
@@ -19,6 +20,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={inter.className}>
                 <ToastProvider>
+                    <Navigation />
                     {children}
                 </ToastProvider>
             </body>
