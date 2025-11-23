@@ -44,7 +44,7 @@ export default function Home() {
             </div>
 
             {/* Navigation Dock */}
-            <div className="absolute bottom-0 left-0 right-0 z-20 p-6 pb-12 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/80 to-transparent">
+            <div className="fixed bottom-0 left-0 right-0 z-50 p-6 pb-12 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/80 to-transparent">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
                     {/* Patient Button */}
                     <button
