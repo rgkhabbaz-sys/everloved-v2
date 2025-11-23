@@ -30,7 +30,7 @@ export default function Home() {
     };
 
     return (
-        <main className="min-h-screen flex flex-col items-center justify-end pb-32 relative overflow-hidden bg-[var(--primary)]">
+        <main className="min-h-screen flex flex-col relative bg-[var(--primary)]">
             {/* Immersive Background */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-gradient-to-b from-[var(--primary)]/40 to-[var(--primary)]/90 z-10" />
@@ -43,8 +43,11 @@ export default function Home() {
                 />
             </div>
 
-            {/* Navigation Dock */}
-            <div className="fixed bottom-0 left-0 right-0 z-50 p-6 pb-12 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/80 to-transparent">
+            {/* Main Content Area (pushes dock to bottom) */}
+            <div className="flex-1 relative z-20"></div>
+
+            {/* Navigation Dock - Standard Flow */}
+            <div className="relative z-20 p-6 pb-12 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/80 to-transparent mt-auto">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
                     {/* Patient Button */}
                     <button
@@ -83,9 +86,6 @@ export default function Home() {
                     </Link>
                 </div>
             </div>
-
-            {/* Ambient Elements */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--background)] to-transparent z-10" />
 
             {/* Session Overlay */}
             {isSessionActive && activeProfile && (
