@@ -14,6 +14,8 @@ const tabs = [
 export function Navigation() {
     const pathname = usePathname();
 
+    if (pathname === "/") return null;
+
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-6 bg-transparent pointer-events-none">
             <div className="glass-panel rounded-full px-3 py-2 pointer-events-auto flex gap-2 shadow-2xl bg-white/5 backdrop-blur-md border border-white/10">

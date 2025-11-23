@@ -30,12 +30,18 @@ export default function Home() {
     };
 
     return (
-        <main
-            className="min-h-screen flex flex-col justify-end pb-12 px-6 bg-cover bg-center bg-no-repeat relative"
-            style={{ backgroundImage: 'url("/landing-bg.jpg")' }}
-        >
-            {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-black/40 z-0" />
+        <main className="min-h-screen flex flex-col justify-end pb-12 px-6 relative">
+            {/* Immersive Background */}
+            <div className="fixed inset-0 z-[-1]">
+                <div className="absolute inset-0 bg-black/40 z-10" />
+                <Image
+                    src="/landing-bg.jpg"
+                    alt="Comforting Background"
+                    fill
+                    className="object-cover object-center opacity-60"
+                    priority
+                />
+            </div>
 
             {/* Navigation Dock - Standard Flow */}
             <div className="relative z-10 w-full max-w-7xl mx-auto">
