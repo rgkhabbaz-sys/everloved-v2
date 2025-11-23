@@ -15,21 +15,22 @@ export function Button({
     const baseStyles = "inline-flex items-center justify-center rounded-full font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
     const variants = {
-        primary: "bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90",
-        secondary: "bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--secondary)]/80",
-        outline: "border-2 border-[var(--foreground)] text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)]",
-        ghost: "hover:bg-[var(--secondary)] text-[var(--foreground)]",
+        primary: "bg-[#89CFF0] text-black font-bold hover:scale-105 shadow-lg hover:shadow-[#89CFF0]/20",
+        secondary: "bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm",
+        outline: "border-2 border-white/20 text-white hover:border-[#89CFF0] hover:text-[#89CFF0]",
+        ghost: "hover:bg-white/5 text-white/60 hover:text-white",
     };
 
     const sizes = {
         sm: "h-9 px-4 text-sm",
-        md: "h-11 px-6 text-base",
-        lg: "h-14 px-8 text-lg",
+        md: "h-12 px-6 text-base",
+        lg: "h-16 px-8 text-xl",
     };
 
     return (
         <button
             className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+            style={{ fontFamily: 'Avenir, sans-serif' }}
             {...props}
         >
             {children}

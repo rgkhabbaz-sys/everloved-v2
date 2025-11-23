@@ -37,11 +37,12 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
                     <div
                         key={toast.id}
                         className={`
-              px-4 py-3 rounded-xl shadow-lg text-white text-sm font-medium
+              px-6 py-4 rounded-2xl shadow-2xl text-white text-sm font-bold backdrop-blur-md border border-white/10
               transform transition-all duration-300 animate-in slide-in-from-bottom-5 fade-in
-              ${toast.type === 'success' ? 'bg-green-500' :
-                                toast.type === 'error' ? 'bg-red-500' : 'bg-blue-500'}
+              ${toast.type === 'success' ? 'bg-green-500/80' :
+                                toast.type === 'error' ? 'bg-red-500/80' : 'bg-[#89CFF0]/80 text-black'}
             `}
+                        style={{ fontFamily: 'Avenir, sans-serif' }}
                     >
                         {toast.message}
                     </div>

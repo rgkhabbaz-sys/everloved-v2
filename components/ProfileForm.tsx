@@ -150,6 +150,7 @@ export function ProfileForm({ onSubmit, onCancel }: ProfileFormProps) {
                 <div className="grid grid-cols-3 gap-4 mt-4">
                     {formData.photos.map(photo => (
                         <div key={photo.id} className="relative group aspect-square bg-white/5 rounded-xl overflow-hidden border border-white/10">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src={photo.url} alt={photo.caption} className="w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                 <button

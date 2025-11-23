@@ -13,6 +13,11 @@ export default function CaregiverPage() {
     const [viewingProfile, setViewingProfile] = useState<Profile | null>(null);
 
     useEffect(() => {
+        const loadProfiles = async () => {
+            const data = await db.getProfiles();
+            setProfiles(data);
+            setIsLoading(false);
+        };
         loadProfiles();
     }, []);
 

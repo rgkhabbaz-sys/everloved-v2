@@ -7,8 +7,9 @@ import { Navigation } from "@/components/Navigation";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "EverLoved - AI Companion for Dementia Care",
-    description: "A therapeutic, voice-enabled companion for dementia patients and their caregivers.",
+    title: "EverLoved | Avant-Garde AI Companion",
+    description: "A premium, voice-enabled therapeutic companion for dementia care. Experience the future of connection.",
+    manifest: "/manifest.json",
 };
 
 export default function RootLayout({

@@ -32,6 +32,7 @@ export function PatientDataView({ profile, onClose }: PatientDataViewProps) {
                     </div>
                     <button
                         onClick={onClose}
+                        aria-label="Close patient data"
                         className="p-2 hover:bg-white/10 rounded-full transition-colors text-white/60 hover:text-white"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
@@ -81,11 +82,11 @@ export function PatientDataView({ profile, onClose }: PatientDataViewProps) {
                                         </div>
                                         <div className="space-y-2">
                                             <p className="text-sm font-bold text-[#89CFF0]" style={{ fontFamily: 'Avenir, sans-serif' }}>Patient:</p>
-                                            <p className="text-white/90 italic font-light" style={{ fontFamily: 'Avenir, sans-serif' }}>"{interaction.transcript}"</p>
+                                            <p className="text-white/90 italic font-light" style={{ fontFamily: 'Avenir, sans-serif' }}>&quot;{interaction.transcript}&quot;</p>
                                         </div>
                                         <div className="space-y-2 pl-4 border-l-2 border-[#89CFF0]/30">
                                             <p className="text-sm font-bold text-[#89CFF0]" style={{ fontFamily: 'Avenir, sans-serif' }}>AI Companion:</p>
-                                            <p className="text-white/90 font-light" style={{ fontFamily: 'Avenir, sans-serif' }}>"{interaction.response}"</p>
+                                            <p className="text-white/90 font-light" style={{ fontFamily: 'Avenir, sans-serif' }}>&quot;{interaction.response}&quot;</p>
                                         </div>
                                     </div>
                                 ))}

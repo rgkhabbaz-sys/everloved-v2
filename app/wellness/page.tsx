@@ -10,14 +10,13 @@ export default function WellnessPage() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        const loadMetrics = async () => {
+            const data = await db.getWellnessMetrics();
+            setMetrics(data);
+            setIsLoading(false);
+        };
         loadMetrics();
     }, []);
-
-    const loadMetrics = async () => {
-        const data = await db.getWellnessMetrics();
-        setMetrics(data);
-        setIsLoading(false);
-    };
 
     return (
         <main className="min-h-screen pt-24 px-4 bg-[var(--background)]">

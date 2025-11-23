@@ -11,14 +11,13 @@ export default function SciencePage() {
     const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
     useEffect(() => {
+        const loadResources = async () => {
+            const data = await db.getResources();
+            setResources(data);
+            setIsLoading(false);
+        };
         loadResources();
     }, []);
-
-    const loadResources = async () => {
-        const data = await db.getResources();
-        setResources(data);
-        setIsLoading(false);
-    };
 
     const categories = ["All", "Research", "Therapy", "Care Tips", "Wellness"];
     const filteredResources = selectedCategory === "All"

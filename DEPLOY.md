@@ -2,6 +2,12 @@
 
 This application is built with Next.js and is ready to be deployed to Vercel.
 
+**Latest Update: Avant-Garde Transformation**
+- New "Soft Blue" & Glassmorphic aesthetic.
+- Enhanced Patient Voice Session with visual simulation.
+- Comprehensive Caregiver Profile management.
+- Functional Health & Science sections.
+
 ## Prerequisites
 
 1.  **GitHub Account**: Ensure your code is pushed to a GitHub repository.
@@ -35,6 +41,7 @@ This application is built with Next.js and is ready to be deployed to Vercel.
 - Your app will be live at `https://your-project-name.vercel.app`.
 - Test the **Voice Session** (requires microphone permission).
 - Test the **Caregiver Profile** creation (uses local storage, so data is per-device).
+- **Install App**: Open on mobile (Safari/Chrome) and select "Add to Home Screen" to test PWA functionality.
 
 ## Troubleshooting
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Profile } from "@/lib/db/types";
 
 interface SessionViewProps {
@@ -15,56 +15,32 @@ export function SessionView({ profile, onEndSession }: SessionViewProps) {
     const [transcript, setTranscript] = useState("");
     const [response, setResponse] = useState("");
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const recognitionRef = useRef<any>(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
-    useEffect(() => {
-        // Initialize Web Speech API
-        if (typeof window !== "undefined" && "webkitSpeechRecognition" in window) {
-            // @ts-ignore
-            const recognition = new window.webkitSpeechRecognition();
-            recognition.continuous = false;
-            recognition.interimResults = false;
-            recognition.lang = "en-US";
-
-            recognition.onstart = () => setState("listening");
-
-            recognition.onresult = (event: any) => {
-                const text = event.results[0][0].transcript;
-                setTranscript(text);
-                handleUserMessage(text);
-            };
-
-            recognition.onerror = (event: any) => {
-                console.error("Speech recognition error", event.error);
+    const playAudio = useCallback((url: string) => {
+        setState("speaking");
+        if (audioRef.current) {
+            audioRef.current.src = url;
+            audioRef.current.play();
+            audioRef.current.onended = () => {
                 setState("idle");
             };
-
-            recognition.onend = () => {
-                if (state === "listening") setState("idle");
-            };
-
-            recognitionRef.current = recognition;
         }
-
-        return () => {
-            if (recognitionRef.current) recognitionRef.current.stop();
-        };
     }, []);
 
-    const startListening = () => {
-        if (recognitionRef.current) {
-            try {
-                recognitionRef.current.start();
-            } catch (e) {
-                console.error("Error starting recognition:", e);
-            }
-        } else {
-            alert("Speech recognition not supported in this browser. Please use Chrome or Safari.");
-        }
-    };
+    const simulateSpeaking = useCallback((text: string) => {
+        setState("speaking");
+        // Estimate duration: ~80ms per character
+        const duration = Math.min(Math.max(text.length * 80, 2000), 10000);
 
-    const handleUserMessage = async (text: string) => {
+        setTimeout(() => {
+            setState("idle");
+        }, duration);
+    }, []);
+
+    const handleUserMessage = useCallback(async (text: string) => {
         setState("thinking");
 
         try {
@@ -110,33 +86,61 @@ export function SessionView({ profile, onEndSession }: SessionViewProps) {
             console.error("Session error:", error);
             setState("idle");
         }
-    };
+    }, [profile, playAudio, simulateSpeaking]);
 
-    const playAudio = (url: string) => {
-        setState("speaking");
-        if (audioRef.current) {
-            audioRef.current.src = url;
-            audioRef.current.play();
-            audioRef.current.onended = () => {
+    useEffect(() => {
+        // Initialize Web Speech API
+        if (typeof window !== "undefined" && "webkitSpeechRecognition" in window) {
+            // @ts-expect-error - webkitSpeechRecognition is not in standard TS types
+            const recognition = new window.webkitSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = "en-US";
+
+            recognition.onstart = () => setState("listening");
+
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            recognition.onresult = (event: any) => {
+                const text = event.results[0][0].transcript;
+                setTranscript(text);
+                handleUserMessage(text);
+            };
+
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            recognition.onerror = (event: any) => {
+                console.error("Speech recognition error", event.error);
                 setState("idle");
             };
+
+            recognition.onend = () => {
+                setState(prev => prev === "listening" ? "idle" : prev);
+            };
+
+            recognitionRef.current = recognition;
         }
-    };
 
-    const simulateSpeaking = (text: string) => {
-        setState("speaking");
-        // Estimate duration: ~80ms per character
-        const duration = Math.min(Math.max(text.length * 80, 2000), 10000);
+        return () => {
+            if (recognitionRef.current) recognitionRef.current.stop();
+        };
+    }, [handleUserMessage]);
 
-        setTimeout(() => {
-            setState("idle");
-        }, duration);
-    };
+    const startListening = useCallback(() => {
+        if (recognitionRef.current) {
+            try {
+                recognitionRef.current.start();
+            } catch (e) {
+                console.error("Error starting recognition:", e);
+            }
+        } else {
+            alert("Speech recognition not supported in this browser. Please use Chrome or Safari.");
+        }
+    }, []);
 
     return (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-xl animate-in fade-in duration-500">
             <button
                 onClick={onEndSession}
+                aria-label="End session"
                 className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
@@ -184,7 +188,7 @@ export function SessionView({ profile, onEndSession }: SessionViewProps) {
                 <div className="min-h-[200px] space-y-8 max-w-2xl w-full">
                     {transcript && (
                         <p className="text-3xl text-white/60 font-light leading-relaxed" style={{ fontFamily: 'Avenir, sans-serif' }}>
-                            "{transcript}"
+                            &quot;{transcript}&quot;
                         </p>
                     )}
                     {response && state !== "listening" && (
