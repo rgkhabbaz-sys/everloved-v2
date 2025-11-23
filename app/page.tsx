@@ -43,43 +43,43 @@ export default function Home() {
                 />
             </div>
 
-            {/* Content */}
-            <div className="relative z-20 text-center px-4 max-w-6xl mx-auto animate-in fade-in duration-1000 flex flex-col items-center gap-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-8 w-full max-w-5xl">
+            {/* Navigation Dock */}
+            <div className="absolute bottom-0 left-0 right-0 z-20 p-6 pb-12 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/80 to-transparent">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
                     {/* Patient Button */}
                     <button
                         onClick={handleStartSession}
-                        className="px-8 py-4 text-3xl md:text-5xl font-bold hover:scale-105 transition-transform bg-transparent border-none cursor-pointer"
-                        style={{ fontFamily: 'Avenir, sans-serif', color: '#89CFF0' }}
+                        className="group relative h-32 rounded-3xl bg-black/40 backdrop-blur-xl border border-white/10 hover:border-[#89CFF0] hover:bg-[#89CFF0]/10 transition-all duration-500 flex flex-col items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(137,207,240,0.2)] hover:-translate-y-2"
                     >
-                        Patient
+                        <span className="text-2xl md:text-3xl font-bold text-white group-hover:text-[#89CFF0] transition-colors" style={{ fontFamily: 'Avenir, sans-serif' }}>Patient</span>
+                        <span className="text-xs text-white/40 uppercase tracking-widest group-hover:text-[#89CFF0]/60">Start Session</span>
                     </button>
 
                     {/* Caregiver Link */}
                     <Link
                         href="/caregiver"
-                        className="px-8 py-4 text-3xl md:text-5xl font-bold hover:scale-105 transition-transform bg-transparent border-none cursor-pointer no-underline"
-                        style={{ fontFamily: 'Avenir, sans-serif', color: '#89CFF0' }}
+                        className="group relative h-32 rounded-3xl bg-black/40 backdrop-blur-xl border border-white/10 hover:border-[#89CFF0] hover:bg-[#89CFF0]/10 transition-all duration-500 flex flex-col items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(137,207,240,0.2)] hover:-translate-y-2 no-underline"
                     >
-                        Caregiver
+                        <span className="text-2xl md:text-3xl font-bold text-white group-hover:text-[#89CFF0] transition-colors" style={{ fontFamily: 'Avenir, sans-serif' }}>Caregiver</span>
+                        <span className="text-xs text-white/40 uppercase tracking-widest group-hover:text-[#89CFF0]/60">Manage Profiles</span>
                     </Link>
 
                     {/* New Science Link */}
                     <Link
                         href="/science"
-                        className="px-8 py-4 text-3xl md:text-5xl font-bold hover:scale-105 transition-transform bg-transparent border-none cursor-pointer no-underline"
-                        style={{ fontFamily: 'Avenir, sans-serif', color: '#89CFF0' }}
+                        className="group relative h-32 rounded-3xl bg-black/40 backdrop-blur-xl border border-white/10 hover:border-[#89CFF0] hover:bg-[#89CFF0]/10 transition-all duration-500 flex flex-col items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(137,207,240,0.2)] hover:-translate-y-2 no-underline"
                     >
-                        New Science
+                        <span className="text-2xl md:text-3xl font-bold text-white group-hover:text-[#89CFF0] transition-colors" style={{ fontFamily: 'Avenir, sans-serif' }}>New Science</span>
+                        <span className="text-xs text-white/40 uppercase tracking-widest group-hover:text-[#89CFF0]/60">Research & Tips</span>
                     </Link>
 
                     {/* Health & Wellness Link */}
                     <Link
                         href="/wellness"
-                        className="px-8 py-4 text-3xl md:text-5xl font-bold hover:scale-105 transition-transform bg-transparent border-none cursor-pointer no-underline"
-                        style={{ fontFamily: 'Avenir, sans-serif', color: '#89CFF0' }}
+                        className="group relative h-32 rounded-3xl bg-black/40 backdrop-blur-xl border border-white/10 hover:border-[#89CFF0] hover:bg-[#89CFF0]/10 transition-all duration-500 flex flex-col items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(137,207,240,0.2)] hover:-translate-y-2 no-underline"
                     >
-                        Health & Wellness
+                        <span className="text-2xl md:text-3xl font-bold text-white group-hover:text-[#89CFF0] transition-colors" style={{ fontFamily: 'Avenir, sans-serif' }}>Wellness</span>
+                        <span className="text-xs text-white/40 uppercase tracking-widest group-hover:text-[#89CFF0]/60">Health Metrics</span>
                     </Link>
                 </div>
             </div>
