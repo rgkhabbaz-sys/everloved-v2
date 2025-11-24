@@ -21,6 +21,9 @@ export default function RootLayout({
         <html lang="en">
             <body className={inter.className}>
                 <ToastProvider>
+                    <div className="fixed top-0 left-0 right-0 z-[10000] bg-red-600 text-white text-center p-2 font-bold">
+                        DEBUG: DEPLOYMENT UPDATED - V3 (Neon Dock)
+                    </div>
                     <Navigation />
                     {children}
                 </ToastProvider>
