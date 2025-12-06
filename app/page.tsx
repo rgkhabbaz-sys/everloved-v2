@@ -43,45 +43,82 @@ export default function Home() {
                 />
             </div>
 
-            {/* Content */}
-            <div className="relative z-20 text-center px-4 max-w-6xl mx-auto animate-in fade-in duration-1000 flex flex-col items-center gap-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-8 w-full max-w-5xl">
-                    {/* Patient Button */}
-                    <button
-                        onClick={handleStartSession}
-                        className="px-8 py-4 text-3xl md:text-5xl font-bold hover:scale-105 transition-transform bg-transparent border-none cursor-pointer"
-                        style={{ fontFamily: 'Avenir, sans-serif', color: '#89CFF0' }}
-                    >
-                        Patient
-                    </button>
+            {/* Right-Side Vertical Navigation Stack */}
+            <div className="fixed right-8 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-6 items-end animate-in slide-in-from-right-10 duration-1000">
 
-                    {/* Caregiver Link */}
-                    <Link
-                        href="/caregiver"
-                        className="px-8 py-4 text-3xl md:text-5xl font-bold hover:scale-105 transition-transform bg-transparent border-none cursor-pointer no-underline"
-                        style={{ fontFamily: 'Avenir, sans-serif', color: '#89CFF0' }}
-                    >
-                        Caregiver
-                    </Link>
+                {/* Microphone / Start Session Icon */}
+                <button
+                    onClick={handleStartSession}
+                    className="w-20 h-20 bg-[var(--primary)] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(137,207,240,0.6)] hover:scale-110 transition-transform mb-4"
+                    aria-label="Start Session"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                        <line x1="12" y1="19" x2="12" y2="23" />
+                        <line x1="8" y1="23" x2="16" y2="23" />
+                    </svg>
+                </button>
 
-                    {/* New Science Link */}
-                    <Link
-                        href="/science"
-                        className="px-8 py-4 text-3xl md:text-5xl font-bold hover:scale-105 transition-transform bg-transparent border-none cursor-pointer no-underline"
-                        style={{ fontFamily: 'Avenir, sans-serif', color: '#89CFF0' }}
-                    >
-                        New Science
-                    </Link>
+                {/* 1. Patient Comfort (Start Session) */}
+                <button
+                    onClick={handleStartSession}
+                    className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl hover:scale-105 transition-transform group"
+                >
+                    <Image
+                        src="/assets/user-photos/photo1.jpg"
+                        alt="Patient Comfort"
+                        fill
+                        className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
+                    <span className="absolute bottom-2 left-2 text-white font-bold text-xs bg-black/50 px-2 py-1 rounded">Comfort</span>
+                </button>
 
-                    {/* Health & Wellness Link */}
-                    <Link
-                        href="/wellness"
-                        className="px-8 py-4 text-3xl md:text-5xl font-bold hover:scale-105 transition-transform bg-transparent border-none cursor-pointer no-underline"
-                        style={{ fontFamily: 'Avenir, sans-serif', color: '#89CFF0' }}
-                    >
-                        Health & Wellness
-                    </Link>
-                </div>
+                {/* 2. Caregiver Control */}
+                <Link
+                    href="/caregiver"
+                    className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl hover:scale-105 transition-transform group"
+                >
+                    <Image
+                        src="/assets/user-photos/photo2.jpg"
+                        alt="Caregiver Control"
+                        fill
+                        className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
+                    <span className="absolute bottom-2 left-2 text-white font-bold text-xs bg-black/50 px-2 py-1 rounded">Caregiver</span>
+                </Link>
+
+                {/* 3. New Science */}
+                <Link
+                    href="/science"
+                    className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl hover:scale-105 transition-transform group"
+                >
+                    <Image
+                        src="/assets/user-photos/photo3.png"
+                        alt="New Science"
+                        fill
+                        className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
+                    <span className="absolute bottom-2 left-2 text-white font-bold text-xs bg-black/50 px-2 py-1 rounded">Science</span>
+                </Link>
+
+                {/* 4. Health & Wellness */}
+                <Link
+                    href="/wellness"
+                    className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl hover:scale-105 transition-transform group"
+                >
+                    <Image
+                        src="/assets/user-photos/photo4.jpg"
+                        alt="Health & Wellness"
+                        fill
+                        className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
+                    <span className="absolute bottom-2 left-2 text-white font-bold text-xs bg-black/50 px-2 py-1 rounded">Wellness</span>
+                </Link>
             </div>
 
             {/* Ambient Elements */}
