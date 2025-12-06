@@ -35,7 +35,7 @@ export default function Home() {
             <div className="fixed inset-0 z-[-1]">
                 <div className="absolute inset-0 bg-black/30 z-10" />
                 <Image
-                    src="/landing-bg.jpg"
+                    src="/landing-bg.png"
                     alt="Comforting Background"
                     fill
                     className="object-cover object-center"
