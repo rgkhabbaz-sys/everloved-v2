@@ -43,54 +43,59 @@ export default function Home() {
                 />
             </div>
 
-            {/* Floating Neon Dock - Fixed to bottom, High Z-Index to force visibility */}
-            <div className="fixed bottom-8 left-0 right-0 z-[9999] px-4">
-                <div className="max-w-5xl mx-auto bg-black/40 backdrop-blur-2xl rounded-[2rem] border border-white/10 p-4 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {/* Patient Button */}
-                        <button
-                            onClick={handleStartSession}
-                            className="group relative h-24 md:h-32 rounded-2xl bg-[#89CFF0]/10 border border-[#89CFF0]/30 hover:bg-[#89CFF0]/20 hover:border-[#89CFF0] transition-all duration-300 flex flex-col items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(137,207,240,0.4)] hover:-translate-y-1"
-                        >
-                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#89CFF0]/20 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#89CFF0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /></svg>
-                            </div>
-                            <span className="text-lg md:text-xl font-bold text-white group-hover:text-[#89CFF0]" style={{ fontFamily: 'Avenir, sans-serif' }}>Patient</span>
-                        </button>
+            {/* Main Interface - Right Side Vertical Stack */}
+            <div className="fixed right-8 md:right-16 top-1/2 -translate-y-1/2 flex flex-col items-center gap-6 z-[9999]">
 
-                        {/* Caregiver Link */}
-                        <Link
-                            href="/caregiver"
-                            className="group relative h-24 md:h-32 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/30 transition-all duration-300 flex flex-col items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:-translate-y-1 no-underline"
-                        >
-                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/70 group-hover:text-white"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
-                            </div>
-                            <span className="text-lg md:text-xl font-bold text-white/70 group-hover:text-white" style={{ fontFamily: 'Avenir, sans-serif' }}>Caregiver</span>
-                        </Link>
+                {/* 1. Large Microphone Icon (Primary Action) */}
+                <button
+                    onClick={handleStartSession}
+                    className="group relative w-24 h-24 md:w-28 md:h-28 rounded-full bg-[#89CFF0]/20 backdrop-blur-xl border border-[#89CFF0]/50 hover:bg-[#89CFF0]/30 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center shadow-[0_0_40px_rgba(137,207,240,0.3)] animate-pulse mb-2"
+                >
+                    <div className="absolute inset-0 rounded-full border-2 border-[#89CFF0]/30 animate-ping opacity-20" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#89CFF0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="md:w-14 md:h-14"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" y1="19" x2="12" y2="22" /></svg>
+                </button>
 
-                        {/* New Science Link */}
-                        <Link
-                            href="/science"
-                            className="group relative h-24 md:h-32 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/30 transition-all duration-300 flex flex-col items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:-translate-y-1 no-underline"
-                        >
-                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/70 group-hover:text-white"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg>
-                            </div>
-                            <span className="text-lg md:text-xl font-bold text-white/70 group-hover:text-white" style={{ fontFamily: 'Avenir, sans-serif' }}>New Science</span>
-                        </Link>
+                {/* 2. Photo Buttons Stack */}
+                <div className="flex flex-col gap-4">
+                    {/* Conversation (Island - Photo 4) */}
+                    <button
+                        onClick={handleStartSession}
+                        className="group relative w-48 h-24 md:w-60 md:h-28 rounded-2xl overflow-hidden border border-white/20 hover:border-[#89CFF0] transition-all shadow-lg hover:shadow-[0_0_30px_rgba(137,207,240,0.3)] hover:scale-105 active:scale-95"
+                    >
+                        <Image src="/assets/user-photos/photo4.jpg" alt="Conversation" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        <span className="absolute bottom-3 left-4 text-white font-bold text-lg md:text-xl tracking-wide" style={{ fontFamily: 'Avenir, sans-serif' }}>Conversation</span>
+                    </button>
 
-                        {/* Health & Wellness Link */}
-                        <Link
-                            href="/wellness"
-                            className="group relative h-24 md:h-32 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/30 transition-all duration-300 flex flex-col items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:-translate-y-1 no-underline"
-                        >
-                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/70 group-hover:text-white"><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>
-                            </div>
-                            <span className="text-lg md:text-xl font-bold text-white/70 group-hover:text-white" style={{ fontFamily: 'Avenir, sans-serif' }}>Wellness</span>
-                        </Link>
-                    </div>
+                    {/* Video (Waterfall - Photo 2) */}
+                    <button
+                        onClick={() => alert("Video features coming soon!")}
+                        className="group relative w-48 h-24 md:w-60 md:h-28 rounded-2xl overflow-hidden border border-white/20 hover:border-[#89CFF0] transition-all shadow-lg hover:shadow-[0_0_30px_rgba(137,207,240,0.3)] hover:scale-105 active:scale-95"
+                    >
+                        <Image src="/assets/user-photos/photo2.jpg" alt="Video" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        <span className="absolute bottom-3 left-4 text-white font-bold text-lg md:text-xl tracking-wide" style={{ fontFamily: 'Avenir, sans-serif' }}>Video</span>
+                    </button>
+
+                    {/* Music (Cliffs - Photo 3) */}
+                    <button
+                        onClick={() => alert("Music library coming soon!")}
+                        className="group relative w-48 h-24 md:w-60 md:h-28 rounded-2xl overflow-hidden border border-white/20 hover:border-[#89CFF0] transition-all shadow-lg hover:shadow-[0_0_30px_rgba(137,207,240,0.3)] hover:scale-105 active:scale-95"
+                    >
+                        <Image src="/assets/user-photos/photo3.png" alt="Music" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        <span className="absolute bottom-3 left-4 text-white font-bold text-lg md:text-xl tracking-wide" style={{ fontFamily: 'Avenir, sans-serif' }}>Music</span>
+                    </button>
+
+                    {/* Meditation (Canyon - Photo 1) */}
+                    <button
+                        onClick={() => alert("Meditation guides coming soon!")}
+                        className="group relative w-48 h-24 md:w-60 md:h-28 rounded-2xl overflow-hidden border border-white/20 hover:border-[#89CFF0] transition-all shadow-lg hover:shadow-[0_0_30px_rgba(137,207,240,0.3)] hover:scale-105 active:scale-95"
+                    >
+                        <Image src="/assets/user-photos/photo1.jpg" alt="Meditation" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        <span className="absolute bottom-3 left-4 text-white font-bold text-lg md:text-xl tracking-wide" style={{ fontFamily: 'Avenir, sans-serif' }}>Meditation</span>
+                    </button>
                 </div>
             </div>
 
