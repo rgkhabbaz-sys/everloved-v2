@@ -125,12 +125,14 @@ export default function Home() {
                 />
             </div>
 
-            {/* "everLoved" Logo - ANIMATION RESTORED */}
+            {/* "everLoved" Logo - STATIC CENTERED */}
             <div
                 className="fixed pointer-events-none"
                 style={{
                     zIndex: 99999,
-                    animation: 'logoSlide 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
                 }}
             >
                 <h1 className="text-[7rem] md:text-[9rem] text-white font-light tracking-tight italic drop-shadow-2xl" style={{ fontFamily: "Times New Roman, serif" }}>
@@ -202,28 +204,6 @@ export default function Home() {
 
             {/* Ambient Elements */}
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
-
-            {/* Animation Keyframes */}
-            <style jsx global>{`
-                @keyframes logoSlide {
-                    0% {
-                        top: 40%;
-                        left: 50%;
-                        transform: translate(-50%, -50%) scale(1.2);
-                        opacity: 1; /* Changed from 0 to 1 */
-                    }
-                    10% {
-                        opacity: 1; /* Fade in quickly */
-                    }
-                    100% {
-                        top: auto;
-                        bottom: 5vh; /* Fixed using viewport height */
-                        left: 5vw;   /* Fixed using viewport width */
-                        transform: translate(0, 0) scale(1);
-                        opacity: 1;
-                    }
-                }
-            `}</style>
 
             {/* Session Overlay */}
             {isSessionActive && activeProfile && (
