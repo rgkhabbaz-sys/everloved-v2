@@ -125,7 +125,7 @@ export default function Home() {
                 />
             </div>
 
-            {/* Top Center Navigation Bar - INLINE STYLES DEBUG */}
+            {/* Top Center Navigation Bar - HYBRID SAFE MODE */}
             <nav
                 style={{
                     position: 'fixed',
@@ -133,12 +133,11 @@ export default function Home() {
                     left: '50%',
                     transform: 'translateX(-50%)',
                     zIndex: 99999,
-                    backgroundColor: 'rgba(0,0,0,0.5)',
                     visibility: 'visible',
                     opacity: 1,
                     display: 'flex'
                 }}
-                className="rounded-full px-8 py-4 gap-8 items-center shadow-2xl border border-white/20 backdrop-blur-xl group hover:bg-black/50 transition-all duration-500"
+                className="bg-black/30 backdrop-blur-xl rounded-full px-8 py-4 gap-8 items-center shadow-2xl border border-white/20 group hover:bg-black/50 transition-all duration-500"
             >
                 {[
                     { name: 'Patient Comfort', href: '/' },
@@ -157,19 +156,12 @@ export default function Home() {
                 ))}
             </nav>
 
-            {/* "everLoved" Logo - INLINE STYLES DEBUG - RED BORDER */}
+            {/* "everLoved" Logo - ANIMATION RESTORED */}
             <div
+                className="fixed pointer-events-none"
                 style={{
-                    position: 'fixed',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
                     zIndex: 99999,
-                    pointerEvents: 'none',
-                    border: '5px solid red', // DEBUG BORDER
-                    visibility: 'visible',
-                    opacity: 1,
-                    display: 'flex' // Added display flex as per instruction
+                    animation: 'logoSlide 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
                 }}
             >
                 <h1 className="text-[7rem] md:text-[9rem] text-white font-light tracking-tight italic drop-shadow-2xl" style={{ fontFamily: "Times New Roman, serif" }}>
@@ -184,7 +176,7 @@ export default function Home() {
                 </div>
             )}
 
-            {/* Right-Side Vertical Navigation Stack - INLINE STYLES DEBUG */}
+            {/* Right-Side Vertical Navigation Stack - HYBRID SAFE MODE */}
             <div
                 style={{
                     position: 'fixed',
