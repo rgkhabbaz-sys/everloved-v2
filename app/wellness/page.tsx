@@ -109,7 +109,7 @@ export default function WellnessPage() {
                 />
             </div>
 
-            <div className="relative z-10 container mx-auto max-w-7xl">
+            <div className="relative z-10 container mx-auto max-w-7xl" style={{ position: 'relative', zIndex: 100 }}>
                 <header className="mb-10 flex flex-col md:flex-row justify-between items-end gap-4 border-b border-white/10 pb-6">
                     <div>
                         <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">Digital Biomarker Monitor</h1>

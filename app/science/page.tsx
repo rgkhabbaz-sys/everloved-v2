@@ -19,7 +19,7 @@ export default function SciencePage() {
                 />
             </div>
 
-            <div className="relative z-10 container mx-auto max-w-7xl">
+            <div className="relative z-10 container mx-auto max-w-7xl" style={{ position: 'relative', zIndex: 100 }}>
                 <header className="mb-12 text-center">
                     <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">Cognitive Analytics</h1>
                     <p className="text-white/60 font-mono text-sm">

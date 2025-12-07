@@ -54,7 +54,7 @@ export default function CaregiverPage() {
                     priority
                 />
             </div>
-            <div className="relative z-10 container mx-auto max-w-4xl">
+            <div className="relative z-10 container mx-auto max-w-4xl" style={{ position: 'relative', zIndex: 100 }}>
                 <header className="mb-12 flex justify-between items-end">
                     <div>
                         <p className="text-xl text-white/60 font-light" style={{ fontFamily: 'Avenir, sans-serif' }}>
