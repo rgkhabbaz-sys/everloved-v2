@@ -1,4 +1,4 @@
 # EverLoved V2 - Deployment Trigger
 
-Last Trigger: 2025-12-06T20:20:00-05:00
-Purpose: Force fresh build for user verification.
+Session Resume: 2025-12-07T11:30:00-05:00
+Purpose: Trigger Vercel on both main and dev-fix channels.
