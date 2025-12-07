@@ -125,37 +125,6 @@ export default function Home() {
                 />
             </div>
 
-            {/* Top Center Navigation Bar - HYBRID SAFE MODE */}
-            <nav
-                style={{
-                    position: 'fixed',
-                    top: '2rem',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    zIndex: 99999,
-                    visibility: 'visible',
-                    opacity: 1,
-                    display: 'flex'
-                }}
-                className="bg-black/30 backdrop-blur-xl rounded-full px-8 py-4 gap-8 items-center shadow-2xl border border-white/20 group hover:bg-black/50 transition-all duration-500"
-            >
-                {[
-                    { name: 'Patient Comfort', href: '/' },
-                    { name: 'Caregiver Control', href: '/caregiver' },
-                    { name: 'New Science', href: '/science' },
-                    { name: 'Health & Wellness', href: '/wellness' }
-                ].map((link) => (
-                    <Link
-                        key={link.name}
-                        href={link.href}
-                        className="text-sm font-medium text-white/90 hover:text-white transition-colors uppercase tracking-widest hover:scale-105 transform"
-                        style={{ fontFamily: 'Avenir, sans-serif' }}
-                    >
-                        {link.name}
-                    </Link>
-                ))}
-            </nav>
-
             {/* "everLoved" Logo - ANIMATION RESTORED */}
             <div
                 className="fixed pointer-events-none"
