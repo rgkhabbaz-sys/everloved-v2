@@ -125,8 +125,21 @@ export default function Home() {
                 />
             </div>
 
-            {/* Top Center Navigation Bar - Premium Glass */}
-            <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-[9999] bg-black/40 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4 flex gap-8 items-center shadow-2xl !opacity-100 !visible group hover:bg-black/50 transition-all duration-500">
+            {/* Top Center Navigation Bar - INLINE STYLES DEBUG */}
+            <nav
+                style={{
+                    position: 'fixed',
+                    top: '2rem',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 99999,
+                    backgroundColor: 'rgba(0,0,0,0.5)',
+                    visibility: 'visible',
+                    opacity: 1,
+                    display: 'flex'
+                }}
+                className="rounded-full px-8 py-4 gap-8 items-center shadow-2xl border border-white/20 backdrop-blur-xl group hover:bg-black/50 transition-all duration-500"
+            >
                 {[
                     { name: 'Patient Comfort', href: '/' },
                     { name: 'Caregiver Control', href: '/caregiver' },
@@ -144,11 +157,20 @@ export default function Home() {
                 ))}
             </nav>
 
-            {/* "everLoved" Logo Animation */}
-            {/* Logic: Start Center -> Slide to Bottom Left */}
-            {/* "everLoved" Logo - STATIC CENTER FOR VERIFICATION */}
+            {/* "everLoved" Logo - INLINE STYLES DEBUG - RED BORDER */}
             <div
-                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[9999] pointer-events-none"
+                style={{
+                    position: 'fixed',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 99999,
+                    pointerEvents: 'none',
+                    border: '5px solid red', // DEBUG BORDER
+                    visibility: 'visible',
+                    opacity: 1,
+                    display: 'flex' // Added display flex as per instruction
+                }}
             >
                 <h1 className="text-[7rem] md:text-[9rem] text-white font-light tracking-tight italic drop-shadow-2xl" style={{ fontFamily: "Times New Roman, serif" }}>
                     <span className="lowercase">e</span>verLoved
@@ -162,8 +184,22 @@ export default function Home() {
                 </div>
             )}
 
-            {/* Right-Side Vertical Navigation Stack - Premium Glass */}
-            <div className="fixed right-8 top-1/2 -translate-y-1/2 z-[9999] flex flex-col gap-6 items-center !opacity-100 !visible">
+            {/* Right-Side Vertical Navigation Stack - INLINE STYLES DEBUG */}
+            <div
+                style={{
+                    position: 'fixed',
+                    right: '2rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 99999,
+                    visibility: 'visible',
+                    opacity: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '1.5rem',
+                    alignItems: 'center'
+                }}
+            >
 
                 {/* Microphone / Start Session Icon */}
                 <button
