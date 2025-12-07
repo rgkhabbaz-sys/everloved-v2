@@ -13,7 +13,9 @@ export function ProfileForm({ onSubmit, onCancel }: ProfileFormProps) {
     const [formData, setFormData] = useState({
         name: "",
         relationship: "",
+        lifeStory: "",
         biography: "",
+        gender: "female" as "male" | "female",
         voice_id: "21m00Tcm4TlvDq8ikWAM", // Default Rachel
         photos: [] as { id: string; url: string; caption: string }[],
         safetySettings: {
@@ -92,6 +94,40 @@ export function ProfileForm({ onSubmit, onCancel }: ProfileFormProps) {
                 />
             </div>
 
+            {/* Deep Context / Life Story Section */}
+            <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                    <label className="text-sm font-bold text-white/60" style={{ fontFamily: 'Avenir, sans-serif' }}>Deep Context / Life Story</label>
+                    <label className="cursor-pointer text-xs font-bold text-[#89CFF0] hover:underline flex items-center gap-2" style={{ fontFamily: 'Avenir, sans-serif' }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" /></svg>
+                        Upload Text File (.txt)
+                        <input
+                            type="file"
+                            accept=".txt"
+                            className="hidden"
+                            onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file) {
+                                    const reader = new FileReader();
+                                    reader.onload = (event) => {
+                                        const text = event.target?.result as string;
+                                        setFormData(prev => ({ ...prev, lifeStory: (prev.lifeStory ? prev.lifeStory + "\n\n" : "") + text }));
+                                    };
+                                    reader.readAsText(file);
+                                }
+                            }}
+                        />
+                    </label>
+                </div>
+                <textarea
+                    value={formData.lifeStory}
+                    onChange={(e) => setFormData({ ...formData, lifeStory: e.target.value })}
+                    className="w-full p-4 rounded-xl bg-white/5 border border-white/10 focus:border-[#89CFF0] text-white outline-none transition-colors min-h-[200px] placeholder:text-white/20 leading-relaxed font-light"
+                    placeholder="Paste a biography, key memories, childhood stories, or important life events here..."
+                    style={{ fontFamily: 'Avenir, sans-serif' }}
+                />
+            </div>
+
             <div className="space-y-2">
                 <label className="text-sm font-bold text-white/60" style={{ fontFamily: 'Avenir, sans-serif' }}>Context & Memories</label>
                 <textarea
@@ -115,6 +151,19 @@ export function ProfileForm({ onSubmit, onCancel }: ProfileFormProps) {
                     style={{ fontFamily: 'Avenir, sans-serif' }}
                 />
                 <p className="text-xs text-white/40" style={{ fontFamily: 'Avenir, sans-serif' }}>Default: Rachel (21m00Tcm4TlvDq8ikWAM)</p>
+            </div>
+
+            <div className="space-y-2">
+                <label className="text-sm font-bold text-white/60" style={{ fontFamily: 'Avenir, sans-serif' }}>Voice Gender</label>
+                <select
+                    value={formData.gender}
+                    onChange={(e) => setFormData({ ...formData, gender: e.target.value as "male" | "female" })}
+                    className="w-full p-4 rounded-xl bg-white/5 border border-white/10 focus:border-[#89CFF0] text-white outline-none transition-colors"
+                    style={{ fontFamily: 'Avenir, sans-serif' }}
+                >
+                    <option value="female" className="bg-gray-900">Female (Warm)</option>
+                    <option value="male" className="bg-gray-900">Male (Deep)</option>
+                </select>
             </div>
 
             {/* Photos Section */}

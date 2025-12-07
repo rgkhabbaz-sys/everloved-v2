@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { useEffect, useState } from "react";
 import { db } from "@/lib/db/service";
 import { Profile } from "@/lib/db/types";
@@ -23,14 +25,36 @@ export default function CaregiverPage() {
     };
 
     const handleCreateProfile = async (data: Omit<Profile, "id" | "created_at">) => {
-        await db.createProfile(data);
+        const newProfile = await db.createProfile(data);
+        // Phase 1: Save to localStorage for Persona Context
+        const personaProfile = {
+            imageUrl: newProfile.avatar_url || "",
+            name: newProfile.name,
+            relation: newProfile.relationship,
+            lifeStory: newProfile.lifeStory || "",
+            gender: newProfile.gender,
+            boundaries: newProfile.safetySettings?.restrictedTopics.join(", ") || ""
+        };
+        localStorage.setItem("everloved_active_profile", JSON.stringify(personaProfile));
+
         await loadProfiles();
         setIsCreating(false);
     };
 
     return (
-        <main className="min-h-screen pt-24 px-4 bg-[var(--background)]">
-            <div className="container mx-auto max-w-4xl">
+        <main className="min-h-screen pt-24 px-4 bg-[var(--background)] relative overflow-hidden">
+            {/* Immersive Background */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)]/80 to-[var(--background)]/95 z-10" />
+                <Image
+                    src="/assets/user-photos/photo2.jpg"
+                    alt="Caregiver Background"
+                    fill
+                    className="object-cover object-center opacity-40"
+                    priority
+                />
+            </div>
+            <div className="relative z-10 container mx-auto max-w-4xl">
                 <header className="mb-12 flex justify-between items-end">
                     <div>
                         <p className="text-xl text-white/60 font-light" style={{ fontFamily: 'Avenir, sans-serif' }}>

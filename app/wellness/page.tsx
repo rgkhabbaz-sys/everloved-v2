@@ -1,95 +1,150 @@
 "use client";
 
+import Image from "next/image";
+
 import { useEffect, useState } from "react";
 import { db } from "@/lib/db/service";
 import { WellnessMetric } from "@/lib/db/types";
 import { WellnessChart } from "@/components/WellnessChart";
 
+import { BiomarkerCard } from "@/components/BiomarkerCard";
+
 export default function WellnessPage() {
-    const [metrics, setMetrics] = useState<WellnessMetric[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        loadMetrics();
-    }, []);
-
-    const loadMetrics = async () => {
-        const data = await db.getWellnessMetrics();
-        setMetrics(data);
-        setIsLoading(false);
-    };
+    // Mock Data for 8 Specific Cards
+    // Trends are mocked to match the requested UI
+    const metrics = [
+        {
+            id: 1,
+            title: "Verbal Perseveration (Looping)",
+            value: "12 events/hr",
+            trendLabel: "10%",
+            trendDirection: "down", // Improvement
+            status: "ok",
+            context: "Tracks repetitive questioning frequency via NLP.",
+            history: [18, 16, 15, 14, 13, 12, 12]
+        },
+        {
+            id: 2,
+            title: "Aphasia Risk / Speech Latency",
+            value: "Noun/Verb Ratio: 0.8",
+            trendLabel: "Stable",
+            trendDirection: "stable",
+            status: "ok",
+            context: "Monitors vocabulary richness and pause duration.",
+            history: [0.78, 0.79, 0.8, 0.8, 0.79, 0.8, 0.8]
+        },
+        {
+            id: 3,
+            title: "Sundowning Onset",
+            value: "Peak Agitation: 16:30 PM",
+            trendLabel: "Shifted +15m",
+            trendDirection: "stable",
+            status: "warning",
+            context: "Maps high-arousal voice tones to time-of-day.",
+            history: [40, 45, 60, 85, 90, 80, 50] // Mocking an agitation curve peaking in evening
+        },
+        {
+            id: 4,
+            title: "Emotional Range (Valence)",
+            value: "Flat Affect: 15% / Pos: 40%",
+            trendLabel: "Variability ↑",
+            trendDirection: "up",
+            status: "ok",
+            context: "Tracks facial micro-expressions.",
+            history: [30, 35, 32, 38, 40, 42, 40]
+        },
+        {
+            id: 5,
+            title: "Orientation (Time/Place)",
+            value: "Score: 28/30",
+            trendLabel: "Stable",
+            trendDirection: "stable",
+            status: "ok",
+            context: "Accuracy of responses to daily orientation checks.",
+            history: [28, 28, 27, 28, 28, 29, 28]
+        },
+        {
+            id: 6,
+            title: "Sleep Quality (WASO)",
+            value: "Wakes: 4x / night",
+            trendLabel: "1x",
+            trendDirection: "up", // Worsening
+            status: "warning",
+            context: "Wake After Sleep Onset events (linked to wearable data).",
+            history: [2, 2, 3, 3, 3, 4, 4]
+        },
+        {
+            id: 7,
+            title: "Gait Velocity",
+            value: "0.8 m/s",
+            trendLabel: "Stable",
+            trendDirection: "stable",
+            status: "warning", // Lowish velocity might be warning? Keeping as requested context implies fall risk check
+            context: "Walking speed and steadiness (Fall risk indicator).",
+            history: [0.82, 0.81, 0.80, 0.80, 0.79, 0.80, 0.80]
+        },
+        {
+            id: 8,
+            title: "Hydration Adherence",
+            value: "1.2L / day",
+            trendLabel: "Low Warning",
+            trendDirection: "down",
+            status: "warning",
+            context: "Logged fluid intake frequency.",
+            history: [1.5, 1.4, 1.4, 1.3, 1.2, 1.2, 1.2]
+        }
+    ] as const;
 
     return (
-        <main className="min-h-screen pt-24 px-4 bg-[var(--background)]">
-            <div className="container mx-auto max-w-6xl">
-                <header className="mb-12 flex justify-between items-end">
+        <main className="min-h-screen pt-24 px-4 bg-[var(--background)] relative overflow-hidden font-sans">
+            {/* Immersive Background */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)]/90 via-[var(--background)]/80 to-[var(--background)]/95 z-10" />
+                <Image
+                    src="/assets/user-photos/photo4.jpg"
+                    alt="Wellness Background"
+                    fill
+                    className="object-cover object-center opacity-30"
+                    priority
+                />
+            </div>
+
+            <div className="relative z-10 container mx-auto max-w-7xl">
+                <header className="mb-10 flex flex-col md:flex-row justify-between items-end gap-4 border-b border-white/10 pb-6">
                     <div>
-                        <p className="text-xl text-white/60 font-light" style={{ fontFamily: 'Avenir, sans-serif' }}>
-                            Daily metrics and wellness tracking.
+                        <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">Digital Biomarker Monitor</h1>
+                        <p className="text-white/60 font-mono text-sm">
+                            Patient ID: EV-2024-X89 • Status: <span className="text-green-400">Monitoring Active</span>
                         </p>
                     </div>
                     <button
-                        className="px-6 py-2 rounded-full text-sm font-bold hover:scale-105 transition-transform shadow-lg"
-                        style={{
-                            backgroundColor: '#89CFF0',
-                            color: '#000',
-                            fontFamily: 'Avenir, sans-serif'
-                        }}
+                        className="px-6 py-2 rounded-full text-xs font-bold hover:scale-105 transition-transform shadow-lg uppercase tracking-wider bg-[#89CFF0] text-black"
                     >
-                        Export Report
+                        Export Clinical Report
                     </button>
                 </header>
 
-                {isLoading ? (
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        {[1, 2, 3, 4].map(i => (
-                            <div key={i} className="h-40 bg-white/5 rounded-3xl animate-pulse" />
-                        ))}
-                    </div>
-                ) : (
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        {metrics.map((metric) => (
-                            <div key={metric.id} className="p-6 bg-white/5 rounded-3xl border border-white/5 hover:border-[#89CFF0]/30 transition-colors backdrop-blur-sm">
-                                <div className="flex justify-between items-start mb-2">
-                                    <div className="text-sm text-white/60 font-medium" style={{ fontFamily: 'Avenir, sans-serif' }}>{metric.label}</div>
-                                    <div
-                                        className={`text-xs font-bold px-2 py-1 rounded-full ${metric.trend >= 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}
-                                        style={{ fontFamily: 'Avenir, sans-serif' }}
-                                    >
-                                        {metric.trend > 0 ? '+' : ''}{metric.trend}%
-                                    </div>
-                                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+                    {metrics.map((metric) => (
+                        <BiomarkerCard
+                            key={metric.id}
+                            title={metric.title}
+                            value={metric.value}
+                            trendLabel={metric.trendLabel}
+                            trendDirection={metric.trendDirection}
+                            status={metric.status}
+                            context={metric.context}
+                            history={[...metric.history]}
+                        />
+                    ))}
+                </div>
 
-                                <div className="flex items-baseline gap-1 mb-4">
-                                    <div className="text-4xl font-light text-white" style={{ fontFamily: 'Avenir, sans-serif' }}>{metric.value}</div>
-                                    <div className="text-sm text-white/40" style={{ fontFamily: 'Avenir, sans-serif' }}>{metric.unit}</div>
-                                </div>
-
-                                <div className="mt-4 opacity-80 hover:opacity-100 transition-opacity">
-                                    <WellnessChart
-                                        data={metric.history}
-                                        color="#89CFF0"
-                                        height={40}
-                                    />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                <div className="bg-white/5 rounded-3xl border border-white/5 p-12 flex flex-col items-center justify-center text-center backdrop-blur-sm">
-                    <div className="w-20 h-20 bg-[#89CFF0]/10 rounded-full flex items-center justify-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#89CFF0]"><path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>
-                    </div>
-                    <h3 className="text-2xl font-bold mb-3 text-white" style={{ fontFamily: 'Avenir, sans-serif' }}>Detailed Analysis</h3>
-                    <p className="text-white/60 max-w-md text-lg font-light leading-relaxed" style={{ fontFamily: 'Avenir, sans-serif' }}>
-                        Connect a wearable device to unlock detailed sleep stages, heart rate variability, and activity tracking.
+                <div className="max-w-2xl mx-auto text-center opacity-60 hover:opacity-100 transition-opacity">
+                    <p className="text-xs text-white/40 font-mono mb-4">
+                        Data integrated from: Voice Analysis Engine, Computer Vision API, Wearable SDK
                     </p>
-                    <button
-                        className="mt-8 text-[#89CFF0] font-bold hover:scale-105 transition-transform uppercase tracking-widest text-sm"
-                        style={{ fontFamily: 'Avenir, sans-serif' }}
-                    >
-                        Connect Device
+                    <button className="text-[#89CFF0] text-xs font-bold uppercase tracking-widest hover:underline">
+                        Manage Data Sources
                     </button>
                 </div>
             </div>

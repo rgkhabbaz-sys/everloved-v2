@@ -4,6 +4,8 @@ export interface Profile {
     name: string;
     relationship: string;
     biography: string;
+    lifeStory?: string; // Deep context injection
+    gender: 'male' | 'female';
     avatar_url?: string;
     voice_id?: string;
     photos?: {
