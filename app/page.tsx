@@ -146,11 +146,9 @@ export default function Home() {
 
             {/* "everLoved" Logo Animation */}
             {/* Logic: Start Center -> Slide to Bottom Left */}
+            {/* "everLoved" Logo - STATIC CENTER FOR VERIFICATION */}
             <div
-                className="fixed z-[50] pointer-events-none"
-                style={{
-                    animation: 'logoSlide 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
-                }}
+                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[9999] pointer-events-none"
             >
                 <h1 className="text-[7rem] md:text-[9rem] text-white font-light tracking-tight italic drop-shadow-2xl" style={{ fontFamily: "Times New Roman, serif" }}>
                     <span className="lowercase">e</span>verLoved
