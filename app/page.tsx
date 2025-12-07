@@ -112,21 +112,21 @@ export default function Home() {
     };
 
     return (
-        <main className="min-h-screen flex flex-col items-center justify-end pb-32 relative overflow-hidden bg-[var(--primary)] font-sans">
+        <main className="min-h-screen flex flex-col items-center justify-end pb-32 relative overflow-hidden bg-black font-sans">
             {/* Immersive Background */}
             <div className={`absolute inset-0 z-0 transition-transform duration-[2000ms] ${isSpeaking ? 'scale-105' : 'scale-100'}`}>
-                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80 z-10" />
+                <div className="absolute inset-0 bg-black/40 z-10" />
                 <Image
                     src="/assets/user-photos/photo1.jpg"
                     alt="Comforting Background"
                     fill
-                    className="object-cover object-center opacity-80"
+                    className="object-cover object-center opacity-100"
                     priority
                 />
             </div>
 
-            {/* Top Center Navigation Bar - FORCE VISIBLE */}
-            <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-[9999] bg-black/60 backdrop-blur-xl border-2 border-white/30 rounded-full px-8 py-4 flex gap-8 items-center shadow-2xl !opacity-100 !visible">
+            {/* Top Center Navigation Bar - FORCE VISIBLE (Solid Black) */}
+            <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-[9999] bg-black border-2 border-white rounded-full px-8 py-4 flex gap-8 items-center shadow-2xl !opacity-100 !visible">
                 {[
                     { name: 'Patient Comfort', href: '/' },
                     { name: 'Caregiver Control', href: '/caregiver' },
@@ -153,7 +153,7 @@ export default function Home() {
                 }}
             >
                 <h1 className="text-[7rem] md:text-[9rem] text-white font-light tracking-tight italic drop-shadow-2xl" style={{ fontFamily: "Times New Roman, serif" }}>
-                    <span className="lowercase">e</span>verLoved
+                    <span className="lowercase">e</span>verLoved V2
                 </h1>
             </div>
 
@@ -171,9 +171,9 @@ export default function Home() {
                 <button
                     onClick={handleStartSession}
                     disabled={isThinking || isSpeaking}
-                    className={`w-24 h-24 rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(137,207,240,0.8)] transition-all duration-300 mb-8 border-2 border-white/50 ${isListening
-                        ? 'bg-red-500 scale-110 animate-pulse'
-                        : 'bg-white/10 backdrop-blur-2xl hover:scale-110 hover:bg-white/20'
+                    className={`w-24 h-24 rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(255,255,255,0.5)] transition-all duration-300 mb-8 border-4 border-white bg-black ${isListening
+                        ? 'bg-red-600 scale-110 animate-pulse'
+                        : 'hover:scale-110 hover:bg-white/20'
                         }`}
                     aria-label={isListening ? "Listening..." : "Start Session"}
                 >
@@ -189,7 +189,7 @@ export default function Home() {
                 {['Conversation', 'Video', 'Music', 'Calming'].map((btn) => (
                     <button
                         key={btn}
-                        className="w-16 h-16 rounded-2xl bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center text-white hover:text-[#89CFF0] hover:bg-black/80 hover:scale-110 transition-all shadow-2xl group relative"
+                        className="w-16 h-16 rounded-2xl bg-black border-2 border-white flex items-center justify-center text-white hover:text-[#89CFF0] hover:bg-gray-900 hover:scale-110 transition-all shadow-2xl group relative"
                         title={btn}
                     >
                         {/* Icons based on button name */}
@@ -198,7 +198,7 @@ export default function Home() {
                         {btn === 'Music' && <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>}
                         {btn === 'Calming' && <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>}
 
-                        <span className="absolute right-full mr-5 bg-black/90 px-3 py-1.5 rounded-lg text-sm text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-white/20">
+                        <span className="absolute right-full mr-5 bg-black px-3 py-1.5 rounded-lg text-sm text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-white">
                             {btn}
                         </span>
                     </button>
@@ -206,7 +206,7 @@ export default function Home() {
             </div>
 
             {/* Ambient Elements */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/90 to-transparent z-10" />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
 
             {/* Animation Keyframes */}
             <style jsx global>{`
@@ -215,7 +215,7 @@ export default function Home() {
                         top: 40%;
                         left: 50%;
                         transform: translate(-50%, -50%) scale(1.2);
-                        opacity: 0;
+                        opacity: 1; /* Changed from 0 to 1 */
                     }
                     10% {
                         opacity: 1; /* Fade in quickly */
